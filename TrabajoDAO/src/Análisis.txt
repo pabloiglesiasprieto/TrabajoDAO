@@ -1,0 +1,17 @@
+public class Estudiante
+
+		Atributos:	
+	-	int id					ID del estudiante.
+ 	-	String nombre   		Nombre del estudiante.
+	- 	String apellido 		Apellido del estudiante.
+	-	String email    		Email del estudiante.
+	- 	String telefono 		Telefono del estudiante.
+	- 	String fecha    		Fecha de nacimiento del estudiante.
+	
+		Getter y Setters:
+	+	int getID()				Obtiene el ID del estudiante.
+	+	String getNombre()		Obtiene el nombre del estudiante.
+	+	void setNombre()		Modifica el nombre del estudiante.
+	+	String getApellido()	Obtiene el apellido del estudiante.
+	+	void setApellido()		Modifica el apellido del estudiante.
+	
