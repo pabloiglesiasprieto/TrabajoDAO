@@ -1,17 +1,40 @@
 public class Estudiante
 
-		Atributos:	
-	-	int id					ID del estudiante.
- 	-	String nombre   		Nombre del estudiante.
-	- 	String apellido 		Apellido del estudiante.
-	-	String email    		Email del estudiante.
-	- 	String telefono 		Telefono del estudiante.
-	- 	String fecha    		Fecha de nacimiento del estudiante.
+		Atributos:		
+	-	int id													ID del estudiante.
+ 	-	String nombre   										Nombre del estudiante.
+	- 	String apellido 										Apellido del estudiante.
+	-	String email    										Email del estudiante.
+	- 	String telefono 										Telefono del estudiante.
+	- 	String fecha    										Fecha de nacimiento del estudiante.
 	
 		Getter y Setters:
-	+	int getID()				Obtiene el ID del estudiante.
-	+	String getNombre()		Obtiene el nombre del estudiante.
-	+	void setNombre()		Modifica el nombre del estudiante.
-	+	String getApellido()	Obtiene el apellido del estudiante.
-	+	void setApellido()		Modifica el apellido del estudiante.
+	+	int getID ()											Obtiene el ID del estudiante.
+	+	String getNombre ()										Obtiene el nombre del estudiante.
+	+	String getApellido ()									Obtiene el apellido del estudiante.
+	+	String getTelefono ()									Obtiene el teléfono del estudiante.
+	+	void setTelefono (String telefono)						Modifica el teléfono del estudiante.
+	+	String getEmail ()										Obtiene el email del estudiante.
+	+	void setEmail (String email)							Modifica el email del estudiante.
+	+	String getFecha ()										Obtiene la fecha de nacimiento del estudiante.
+	
+		Overrides:
+	+ 	String toString ()										Devuelve una cadena indicando como se debería imprimir el objeto.
+	
+	
+public class EstudianteDAO
+
+	  	Atributos:
+	- 	Connection conex										Atributo que almancenará la conexión a la BBDD.
+	
+		Getters:
+	+	Connection getConnection								Método que devuelve la conexión a la BBDD.
+	
+		Métodos:
+	+	int insertar (Estudiante est)							Método que recibe un estudiante y lo añade a la BBDD.
+	+	boolean borrar (int id)									Método que recibe un identificador y borra al estudiante de la BBDD.
+	+	List<Estudiante> consulta ()							Método que recibe una cadena con el resultado de la consulta.
+	+ 	Estudiante consultaID (int id)							Método que recibe un identificador y devuelve la información de un estudiante.
+	+	boolean modificarTelefono (int id, String telefono)		Método que recibe un identificador de un estudiante y modifica los valores de estudiante.
+	+	boolean modificarEmail (int id, String email)			Método que recibe un identificador de un estudiante y modifica los valores de estudiante.
 	
