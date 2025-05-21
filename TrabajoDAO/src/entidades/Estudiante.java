@@ -1,10 +1,18 @@
 package entidades;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Clase que representará un estudiante con una identificacion(id), un nombre,
  * apellido, email, telefono, fechanacimiento.
  */
 public class Estudiante {
+
+	/**
+	 * Atributo que dará formato a la fecha.
+	 */
+	public static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 	/**
 	 * Atributo privado que identificará al estudiante.
@@ -24,7 +32,7 @@ public class Estudiante {
 	/**
 	 * Atributo privado que será la fecha de nacimiento del estudiante.
 	 */
-	private String fecha;
+	private LocalDate fecha;
 
 	/**
 	 * Atributo privado que será el email del estudiante.
@@ -32,6 +40,7 @@ public class Estudiante {
 	private String email;
 
 	/**
+	 * 
 	 * Atributo privado que será el telefono del estudiante.
 	 */
 	private String telefono;
@@ -63,8 +72,11 @@ public class Estudiante {
 			this.telefono = telefono;
 		}
 
-		if (fecha != null && !fecha.isBlank()) {
-			this.fecha = fecha;
+		try {
+			this.fecha = LocalDate.parse(fecha, FORMATO);
+
+		} catch (Exception e) {
+			System.err.println("Formato de fecha incorrecto. (yyyy-MM-dd)");
 		}
 	}
 
@@ -137,7 +149,7 @@ public class Estudiante {
 	 * @return Fecha de nacimiento del estudiante.
 	 */
 	public String getFecha() {
-		return fecha;
+		return String.valueOf(this.fecha);
 	}
 
 	/**
@@ -146,7 +158,8 @@ public class Estudiante {
 	public String toString() {
 
 		String cadena = "";
-		cadena += this.nombre + " " + this.apellido + " " + this.email + " " + this.telefono + this.fecha;
+		cadena += "Nombre: " + this.nombre + " " + this.apellido + "\nEmail: " + this.email + "\nTeléfono: "
+				+ this.telefono + "\nFecha de Nacimiento: " + String.valueOf(this.fecha);
 		return cadena;
 
 	}

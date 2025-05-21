@@ -7,10 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
-import credenciales.Credenciales;
 import entidades.Estudiante;
+import utils.Credenciales;
 
 /**
  * Clase pública que manejará todo lo relacionado a la manipulación de datos de
@@ -57,9 +56,9 @@ public class EstudianteDAO {
 	 * Método que inserta en la tabla un estudiante.
 	 * 
 	 * @param est Estudiante a insertar en la bbdd.
-	 * @return Devuelve el número de filas insertadas.
+	 * @return Devuelve un booleano indicando si se ha insertado la fila.
 	 */
-	public int insertar(Estudiante est) {
+	public boolean insertar(Estudiante est) {
 
 		// Declaramos la variable que almacenará la cantidad de filas añadidas.
 		int insertedRows = 0;
@@ -67,7 +66,7 @@ public class EstudianteDAO {
 		// Creamos el statement.
 		try {
 			PreparedStatement ps = conex.prepareStatement(
-					"INSERT INTO ESTUDIANTES (nombre,apellidos,fecha_nacimiento,email,telefono) values (?,?,?,?,?)");
+					"INSERT INTO ESTUDIANTES (nombre,apellido,fecha_nacimiento,email,telefono) values (?,?,?,?,?)");
 
 			// Añadimos el nombre al query.
 			ps.setString(1, est.getNombre());
@@ -94,7 +93,7 @@ public class EstudianteDAO {
 			System.out.println("Error a la hora de ejecutar la consulta: " + e.getMessage());
 		}
 		// Devolvemos la filas añadidas.
-		return insertedRows;
+		return insertedRows == 1;
 	}
 
 	/**
@@ -110,13 +109,33 @@ public class EstudianteDAO {
 
 		// Creamos el statement.
 		try {
-			PreparedStatement ps = conex.prepareStatement("DELETE FROM ESTUDIANTES WHERE ID_ESTUDIANTE = ?");
+			// Statement para delete de tabla estudiantes.
+			PreparedStatement deleteEstudiantes = conex
+					.prepareStatement("DELETE FROM ESTUDIANTES WHERE ID_ESTUDIANTE = ?");
+
+			// Statement para delete de tabla calificaciones (INTEGRIDAD REFERENCIAL FIX
+			// ERROR).
+			PreparedStatement deleteCalificaciones = conex
+					.prepareStatement("DELETE FROM CALIFICACIONES WHERE ID_ESTUDIANTE = ?");
+
+			// Statement para delete de tabla matriculas (INTEGRIDAD REFERENCIAL FIX
+			// ERROR).
+			PreparedStatement deleteMatriculas = conex
+					.prepareStatement("DELETE FROM MATRICULAS WHERE ID_ESTUDIANTE = ?");
 
 			// Añadimos el id al query.
-			ps.setInt(1, id);
+			deleteCalificaciones.setInt(1, id);
+			deleteMatriculas.setInt(1, id);
+			deleteEstudiantes.setInt(1, id);
 
-			// Ejecutamos la sentencia.
-			modRows = ps.executeUpdate();
+			// Ejecutamos la sentencia para borrar FK en matriculas.
+			deleteMatriculas.executeUpdate();
+
+			// Ejecutamos la sentencia para borrar FK en calificaciones.
+			deleteCalificaciones.executeUpdate();
+
+			// Guardamos las filas borradas.
+			modRows = deleteEstudiantes.executeUpdate();
 
 			// Recogemos la excepción.
 		} catch (SQLException e) {
@@ -133,7 +152,7 @@ public class EstudianteDAO {
 	 * 
 	 * @return Devuelve una lista con todos los estudiantes.
 	 */
-	public List<Estudiante> consulta() {
+	public ArrayList<Estudiante> consulta() {
 
 		// Declaramos el resultset.
 		ResultSet rs;
@@ -196,8 +215,14 @@ public class EstudianteDAO {
 			// Guardamos el resultado en el ResultSet.
 			rs = ps.executeQuery();
 
-			// Creamos el estudiante.
-			est = new Estudiante(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+			// Movemos el cursor.
+			if (rs.next()) {
+
+				// Creamos el estudiante.
+				est = new Estudiante(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6));
+
+			}
 
 			// Recogemos la excepción.
 		} catch (SQLException e) {
@@ -224,7 +249,7 @@ public class EstudianteDAO {
 		// Creamos un PreparedStatement.
 		try {
 			PreparedStatement ps = conex
-					.prepareStatement("UPDATE FROM ESTUDIANTES SET TELEFONO = ? WHERE ID_ESTUDIANTE = ?");
+					.prepareStatement("UPDATE ESTUDIANTES SET TELEFONO = ? WHERE ID_ESTUDIANTE = ?");
 
 			// Rellenamos el UPDATE.
 			ps.setString(1, telefono);
@@ -259,7 +284,7 @@ public class EstudianteDAO {
 		// Creamos un PreparedStatement.
 		try {
 			PreparedStatement ps = conex
-					.prepareStatement("UPDATE FROM ESTUDIANTES SET TELEFONO = ? WHERE ID_ESTUDIANTE = ?");
+					.prepareStatement("UPDATE ESTUDIANTES SET TELEFONO = ? WHERE ID_ESTUDIANTE = ?");
 
 			// Rellenamos el UPDATE.
 			ps.setString(1, email);

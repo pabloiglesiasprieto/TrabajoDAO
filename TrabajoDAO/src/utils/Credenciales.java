@@ -1,4 +1,4 @@
-package credenciales;
+package utils;
 
 /**
  * Clase que almacenará las credenciales necesarias para el acceso a la base de
@@ -7,7 +7,7 @@ package credenciales;
 public class Credenciales {
 
 	public static String URL = "jdbc:mysql://localhost/institutodb";
-	public static String USUARIO = "localhost";
+	public static String USUARIO = "root";
 	public static String CONTRASEÑA = "123";
 
 }
