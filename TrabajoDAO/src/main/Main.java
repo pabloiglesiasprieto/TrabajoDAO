@@ -62,7 +62,7 @@ public class Main {
 					est = crearEstudiante();
 
 					// Añadimos el estudiante a la bbdd.
-					System.out.print(conex.insertar(est) ? "El estudiante se ha insertado"
+					System.out.println(conex.insertar(est) ? "El estudiante se ha insertado"
 							: "No se ha podido insertar el estudiante");
 				}
 
@@ -262,7 +262,8 @@ public class Main {
 			System.out.println(estu);
 
 			// Imprimimos una linea para dividir los estudiantes.
-			System.out.println("---------------------------");
+			System.out.println(
+					"----------------------------------------------------------------------------------------------------------------------------");
 		}
 	}
 
@@ -272,6 +273,7 @@ public class Main {
 	 * @return Devuelve el estudiante que se ha creado.
 	 */
 	private static Estudiante crearEstudiante() {
+
 		// Declaramos un estudiante.
 		Estudiante est;
 
@@ -322,6 +324,8 @@ public class Main {
 
 		// Creamos el estudiante.
 		est = new Estudiante(nombre, apellido, fecha, email, telefono);
+
+		// Devolvemos el estudiante.
 		return est;
 	}
 

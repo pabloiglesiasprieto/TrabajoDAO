@@ -13,8 +13,8 @@ public class Estudiante
 		Constructor:
 	+	Estudiante (String nombre, String apellido, String fecha, String email, String telefono)	Constructor para crear un Estudiante.
 	
-		Getter y Setters:
-	+	int getID ()											Obtiene el ID del estudiante.
+		Getters y Setters:
+	+	int getId ()											Obtiene el ID del estudiante.
 	+	String getNombre ()										Obtiene el nombre del estudiante.
 	+	String getApellido ()									Obtiene el apellido del estudiante.
 	+	String getTelefono ()									Obtiene el teléfono del estudiante.
@@ -30,7 +30,7 @@ public class Estudiante
 public class EstudianteDAO
 
 	  	Atributos:
-	- 	Connection conex										Atributo que almancenará la conexión a la BBDD.
+	- 	Connection conex										Atributo que almacenará la conexión a la BBDD.
 	
 		Constructor:
 	+	EstudianteDAO()											Inicializa la conexión con la BBDD.
@@ -39,10 +39,9 @@ public class EstudianteDAO
 	+	Connection getConnection ()								Método que devuelve la conexión a la BBDD.
 	
 		Métodos:
-	+	int insertar (Estudiante est)							Método que recibe un estudiante y lo añade a la BBDD.
+	+	boolean insertar (Estudiante est)						Método que recibe un estudiante y lo añade a la BBDD.
 	+	boolean borrar (int id)									Método que recibe un identificador y borra al estudiante de la BBDD.
 	+	ArrayList<Estudiante> consulta ()						Método que devuelve una lista con los Estudiantes.
 	+ 	Estudiante consultaID (int id)							Método que recibe un identificador y devuelve un estudiante.
 	+	boolean modificarTelefono (int id, String telefono)		Método que recibe un identificador de un estudiante y modifica el telefono del estudiante.
 	+	boolean modificarEmail (int id, String email)			Método que recibe un identificador de un estudiante y modifica el email del estudiante.
-	

@@ -158,8 +158,8 @@ public class Estudiante {
 	public String toString() {
 
 		String cadena = "";
-		cadena += "Nombre: " + this.nombre + " " + this.apellido + "\nEmail: " + this.email + "\nTeléfono: "
-				+ this.telefono + "\nFecha de Nacimiento: " + String.valueOf(this.fecha);
+		cadena += "Nombre: " + this.nombre + " " + this.apellido + " |Email: " + this.email + " |Teléfono: "
+				+ this.telefono + " |Fecha de Nacimiento: " + String.valueOf(this.fecha);
 		return cadena;
 
 	}
