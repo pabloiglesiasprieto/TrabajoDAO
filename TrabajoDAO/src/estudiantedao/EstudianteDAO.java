@@ -171,8 +171,8 @@ public class EstudianteDAO {
 			while (rs.next()) {
 
 				// Creamos un estudiante.
-				Estudiante est = new Estudiante(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getString(6));
+				Estudiante est = new Estudiante(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6));
 
 				// Lo añadimos a la lista.
 				listaEstudiantes.add(est);
@@ -219,7 +219,7 @@ public class EstudianteDAO {
 			if (rs.next()) {
 
 				// Creamos el estudiante.
-				est = new Estudiante(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+				est = new Estudiante(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6));
 
 			}
@@ -283,8 +283,7 @@ public class EstudianteDAO {
 
 		// Creamos un PreparedStatement.
 		try {
-			PreparedStatement ps = conex
-					.prepareStatement("UPDATE ESTUDIANTES SET TELEFONO = ? WHERE ID_ESTUDIANTE = ?");
+			PreparedStatement ps = conex.prepareStatement("UPDATE ESTUDIANTES SET EMAIL = ? WHERE ID_ESTUDIANTE = ?");
 
 			// Rellenamos el UPDATE.
 			ps.setString(1, email);

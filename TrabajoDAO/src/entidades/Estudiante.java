@@ -53,6 +53,7 @@ public class Estudiante {
 	 * @param email    Email del estudiante.
 	 * @param telefono Telefono del estudiante.
 	 * @param fecha    Fecha de nacimiento del estudiante.
+	 * @throws WrongEmailException Lanza una excepción si el correo está mal puesto.
 	 */
 	public Estudiante(String nombre, String apellido, String fecha, String email, String telefono) {
 
@@ -64,19 +65,60 @@ public class Estudiante {
 			this.apellido = apellido;
 		}
 
-		if (email != null && !email.isBlank()) {
+		if (email != null && !email.isBlank() && email.contains("@") && email.contains(".com")) {
 			this.email = email;
+
+			if (telefono != null && !telefono.isBlank()) {
+				this.telefono = telefono;
+			}
+
+			try {
+				this.fecha = LocalDate.parse(fecha, FORMATO);
+
+			} catch (Exception e) {
+				System.err.println("Formato de fecha incorrecto. (yyyy-MM-dd)");
+			}
+		}
+	}
+
+	/**
+	 * Constructor de Estudiante.
+	 * 
+	 * @param id       Id del estudiante.
+	 * @param nombre   Nombre del estudiante.
+	 * @param apellido Apellido del estudiante.
+	 * @param email    Email del estudiante.
+	 * @param telefono Telefono del estudiante.
+	 * @param fecha    Fecha de nacimiento del estudiante.
+	 * @throws WrongEmailException Lanza una excepción si el correo está mal puesto.
+	 */
+	public Estudiante(int id, String nombre, String apellido, String fecha, String email, String telefono) {
+
+		if (id > 0) {
+			this.id = id;
 		}
 
-		if (telefono != null && !telefono.isBlank()) {
-			this.telefono = telefono;
+		if (nombre != null && !nombre.isBlank()) {
+			this.nombre = nombre;
 		}
 
-		try {
-			this.fecha = LocalDate.parse(fecha, FORMATO);
+		if (apellido != null && !apellido.isBlank()) {
+			this.apellido = apellido;
+		}
 
-		} catch (Exception e) {
-			System.err.println("Formato de fecha incorrecto. (yyyy-MM-dd)");
+		if (email != null && !email.isBlank() && email.contains("@") && email.contains(".com")) {
+			this.email = email;
+
+			if (telefono != null && !telefono.isBlank()) {
+				this.telefono = telefono;
+			}
+
+			try {
+				this.fecha = LocalDate.parse(fecha, FORMATO);
+
+			} catch (Exception e) {
+				System.err.println("Formato de fecha incorrecto. (yyyy-MM-dd)");
+			}
 		}
 	}
 
@@ -158,8 +200,8 @@ public class Estudiante {
 	public String toString() {
 
 		String cadena = "";
-		cadena += "Nombre: " + this.nombre + " " + this.apellido + " |Email: " + this.email + " |Teléfono: "
-				+ this.telefono + " |Fecha de Nacimiento: " + String.valueOf(this.fecha);
+		cadena += "ID: " + this.id + "| Nombre: " + this.nombre + " " + this.apellido + " |Email: " + this.email
+				+ " |Teléfono: " + this.telefono + " |Fecha de Nacimiento: " + String.valueOf(this.fecha);
 		return cadena;
 
 	}

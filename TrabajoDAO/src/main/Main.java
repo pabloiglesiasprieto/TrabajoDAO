@@ -131,6 +131,7 @@ public class Main {
 							System.out.println("No se ha podido modificar el teléfono.");
 						}
 					}
+					// Segundo case.
 					case 2 -> {
 
 						// Preguntamos el nuevo email.
