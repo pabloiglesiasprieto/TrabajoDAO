@@ -25,6 +25,7 @@ public class EstudianteDAO {
 	/**
 	 * Constructor de la clase de manipulación de datos que inicializará la conexión
 	 * con la BBDD.
+	 * 
 	 */
 	public EstudianteDAO() {
 
@@ -58,6 +59,8 @@ public class EstudianteDAO {
 	 * 
 	 * @param est Estudiante a insertar en la bbdd.
 	 * @return Devuelve un booleano indicando si se ha insertado la fila.
+	 * @throws SQLException Lanza una excepción si ha habido un error a la hora de
+	 *                      insertar el estudiante.
 	 */
 	public boolean insertar(Estudiante est) {
 
@@ -103,6 +106,8 @@ public class EstudianteDAO {
 	 * 
 	 * @param id ID del estudiante a borrar.
 	 * @return Devuelve un booleano indicando si se ha podido borrar o no.
+	 * @throws SQLException Lanza una excepción si ha habido un error a la hora de
+	 *                      borrar el estudiante.
 	 */
 	public boolean borrar(int id) {
 
@@ -155,6 +160,8 @@ public class EstudianteDAO {
 	 * Método que devuelve todos los estudiantes de la tabla.
 	 * 
 	 * @return Devuelve una lista con todos los estudiantes.
+	 * @throws SQLException Lanza una excepción si ha habido un error en la
+	 *                      consulta.
 	 */
 	public ArrayList<Estudiante> consulta() {
 
@@ -200,6 +207,8 @@ public class EstudianteDAO {
 	 * 
 	 * @param id Parámetro de entrada que será el ID del estudiante a buscar en la
 	 *           BBDD.
+	 * @throws SQLException Lanza una excepción si ha habido un error en la
+	 *                      consulta.
 	 * @return Devuelve el estudiante a buscar, si es null es que no se ha
 	 *         encontrado al estudiante.
 	 */
@@ -245,6 +254,7 @@ public class EstudianteDAO {
 	 * @param id       ID del Estudiante a modificar.
 	 * @param telefono Telefono nuevo a modificar.
 	 * @return Devuelve un booleano indicando si se ha modificado un registro o no.
+	 * @throws SQLException Lanza una excepción si ha habido un error en el UPDATE.
 	 */
 	public boolean modificarTelefono(int id, String telefono) {
 
@@ -280,6 +290,7 @@ public class EstudianteDAO {
 	 * @param id    ID del Estudiante a modificar.
 	 * @param email email nuevo a modificar.
 	 * @return Devuelve un booleano indicando si se ha modificado un registro o no.
+	 * @throws SQLException Lanza una excepción si ha habido un error en el UPDATE.
 	 */
 	public boolean modificarEmail(int id, String email) {
 
@@ -305,6 +316,5 @@ public class EstudianteDAO {
 		}
 		// Devolvemos un booleano indicando si se han modificado registros o no.
 		return modRows == 1;
-
 	}
 }

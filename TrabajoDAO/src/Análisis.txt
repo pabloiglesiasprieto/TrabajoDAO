@@ -1,13 +1,13 @@
 public class Estudiante
 
 		Atributos:		
-	-	int id													ID del estudiante.
- 	-	String nombre   										Nombre del estudiante.
-	- 	String apellido 										Apellido del estudiante.
-	-	String email    										Email del estudiante.
-	- 	String telefono 										Telefono del estudiante.
-	- 	LocalDate fecha    										Fecha de nacimiento del estudiante.
-	-	DateTimeFormatter FORMATO								Guarda el formato correcto de la fecha.
+	-	int id														ID del estudiante.
+ 	-	String nombre   											Nombre del estudiante.
+	- 	String apellido 											Apellido del estudiante.
+	-	String email    											Email del estudiante.
+	- 	String telefono 											Telefono del estudiante.
+	- 	LocalDate fecha    											Fecha de nacimiento del estudiante.
+	-	DateTimeFormatter FORMATO									Guarda el formato correcto de la fecha.
 	
 	
 		Constructor:
@@ -15,34 +15,34 @@ public class Estudiante
 	+	Estudiante (int id, String nombre, String apellido, String fecha, String email, String telefono)	Constructor para crear un Estudiante de la BBDD.
 	
 		Getters y Setters:
-	+	int getId ()											Obtiene el ID del estudiante.
-	+	String getNombre ()										Obtiene el nombre del estudiante.
-	+	String getApellido ()									Obtiene el apellido del estudiante.
-	+	String getTelefono ()									Obtiene el teléfono del estudiante.
-	+	void setTelefono (String telefono)						Modifica el teléfono del estudiante.
-	+	String getEmail ()										Obtiene el email del estudiante.
-	+	void setEmail (String email)							Modifica el email del estudiante.
-	+	String getFecha ()										Obtiene la fecha de nacimiento del estudiante.
+	+	int getId ()												Obtiene el ID del estudiante.
+	+	String getNombre ()											Obtiene el nombre del estudiante.
+	+	String getApellido ()										Obtiene el apellido del estudiante.
+	+	String getTelefono ()										Obtiene el teléfono del estudiante.
+	+	void setTelefono (String telefono)							Modifica el teléfono del estudiante.
+	+	String getEmail ()											Obtiene el email del estudiante.
+	+	void setEmail (String email)								Modifica el email del estudiante.
+	+	String getFecha ()											Obtiene la fecha de nacimiento del estudiante.
 	
 		Overrides:
-	+ 	String toString ()										Devuelve una cadena indicando como se debería imprimir el objeto.
+	+ 	String toString ()											Devuelve una cadena indicando como se debería imprimir el objeto.
 	
 	
 public class EstudianteDAO
 
 	  	Atributos:
-	- 	Connection conex										Atributo que almacenará la conexión a la BBDD.
+	- 	Connection conex											Atributo que almacenará la conexión a la BBDD.
 	
 		Constructor:
-	+	EstudianteDAO()											Inicializa la conexión con la BBDD.
+	+	EstudianteDAO()												Inicializa la conexión con la BBDD.
 	
 		Getters:
-	+	Connection getConnection ()								Método que devuelve la conexión a la BBDD.
+	+	Connection getConnection ()									Método que devuelve la conexión a la BBDD.
 	
 		Métodos:
-	+	boolean insertar (Estudiante est)						Método que recibe un estudiante y lo añade a la BBDD.
-	+	boolean borrar (int id)									Método que recibe un identificador y borra al estudiante de la BBDD.
-	+	ArrayList<Estudiante> consulta ()						Método que devuelve una lista con los Estudiantes.
-	+ 	Estudiante consultaID (int id)							Método que recibe un identificador y devuelve un estudiante.
-	+	boolean modificarTelefono (int id, String telefono)		Método que recibe un identificador de un estudiante y modifica el telefono del estudiante.
-	+	boolean modificarEmail (int id, String email)			Método que recibe un identificador de un estudiante y modifica el email del estudiante.
+	+	boolean insertar (Estudiante est) throws SQLException						Método que recibe un estudiante y lo añade a la BBDD.
+	+	boolean borrar (int id)	throws SQLException									Método que recibe un identificador y borra al estudiante de la BBDD.
+	+	ArrayList<Estudiante> consulta () throws SQLException						Método que devuelve una lista con los Estudiantes.
+	+ 	Estudiante consultaID (int id) throws SQLException							Método que recibe un identificador y devuelve un estudiante.
+	+	boolean modificarTelefono (int id, String telefono)	throws SQLException		Método que recibe un identificador de un estudiante y modifica el telefono del estudiante.
+	+	boolean modificarEmail (int id, String email) throws SQLException			Método que recibe un identificador de un estudiante y modifica el email del estudiante.
