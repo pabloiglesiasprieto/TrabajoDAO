@@ -156,7 +156,10 @@ public class Estudiante {
 	 * @param email Email nuevo del estudiante.
 	 */
 	public void setEmail(String email) {
-		this.email = email;
+		if (email != null && !email.isBlank() && email.contains("@") && email.contains(".com")
+				|| email.contains(".es")) {
+			this.email = email;
+		}
 	}
 
 	/**
@@ -174,7 +177,9 @@ public class Estudiante {
 	 * @param telefono Nuevo teléfono del estudiante.
 	 */
 	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+		if (telefono != null && !telefono.isBlank()) {
+			this.telefono = telefono;
+		}
 	}
 
 	/**
