@@ -247,6 +247,8 @@ public class Main {
 
 		// Limpiamos buffer de entrada.
 		sc.nextLine();
+		
+		// Devolvemos el id.
 		return id;
 	}
 
