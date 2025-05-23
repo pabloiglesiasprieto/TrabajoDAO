@@ -43,11 +43,8 @@ public class Main {
 			// Imprimimos el menú.
 			menu();
 
-			// Guardamos la eleccion.
-			eleccion = sc.nextInt();
-
-			// Limpiamos buffer de entrada.
-			sc.nextLine();
+			// Preguntamos que acción realizar.
+			eleccion = preguntarEleccion();
 
 			// Hacemos un while.
 			while (eleccion != 0) {
@@ -112,11 +109,8 @@ public class Main {
 					// Primer case.
 					case 1 -> {
 
-						// Preguntamos el nuevo telefono.
-						System.out.println("Introduce el nuevo telefono.");
-
-						// Leemos entrada de teclado.
-						telefono = sc.nextLine();
+						// Pedimos el telefono.
+						telefono = pedirTelefono();
 
 						// Llamamos a la función de modificar el telefono.
 						if (conex.modificarTelefono(id, telefono)) {
@@ -134,11 +128,8 @@ public class Main {
 					// Segundo case.
 					case 2 -> {
 
-						// Preguntamos el nuevo email.
-						System.out.println("Introduce el nuevo email.");
-
-						// Leemos entrada de teclado.
-						email = sc.nextLine();
+						// Pedimos el Email.
+						email = pedirEmail();
 
 						// Llamamos a la función de modificar el email.
 						if (conex.modificarEmail(id, email)) {
@@ -155,18 +146,11 @@ public class Main {
 					}
 					}
 				}
-
 				// Quinto case.
 				case 5 -> {
 
-					// Preguntamos el id.
-					System.out.println("Introduce el id del estudiante a borrar.");
-
 					// Leemos entrada de teclado.
-					id = sc.nextInt();
-
-					// Limpiamos buffer de entrada.
-					sc.nextLine();
+					id = pedirID();
 
 					// Llamamos a la función para borrar el estudiante.
 					if (conex.borrar(id)) {
@@ -181,7 +165,6 @@ public class Main {
 						System.out.println("El estudiante no se ha podido borrar.");
 					}
 				}
-
 				// Case default.
 				default -> {
 
@@ -192,15 +175,73 @@ public class Main {
 				// Imprimimos el menú.
 				menu();
 
-				// Guardamos la eleccion.
-				eleccion = sc.nextInt();
-
-				// Limpiamos buffer de entrada.
-				sc.nextLine();
+				// Preguntamos la eleccion.
+				eleccion = preguntarEleccion();
 			}
 		}
 		// Imprimimos que se ha salido del bucle.
 		System.out.println("Saliendo...");
+	}
+
+	/**
+	 * Función que pregunta al usuario que acción realizar del switch.
+	 * 
+	 * @return Devuelve un entero para saber que acción del menú quiere realizar el
+	 *         usuario.
+	 */
+	private static int preguntarEleccion() {
+
+		// Declaramos una variable entero para la elección del usuario.
+		int eleccion;
+
+		// Guardamos la eleccion.
+		eleccion = sc.nextInt();
+
+		// Limpiamos buffer de entrada.
+		sc.nextLine();
+
+		// Devolvemos la elección del usuario.
+		return eleccion;
+	}
+
+	/**
+	 * Función que pregunta el email del estudiante.
+	 * 
+	 * @return Devuelve una cadena que será el email del estudiante.
+	 */
+	private static String pedirEmail() {
+
+		// Declaramos una variable que almacenará el email dado por consola.
+		String email;
+
+		// Preguntamos el nuevo email.
+		System.out.println("Introduce el nuevo email.");
+
+		// Leemos entrada de teclado.
+		email = sc.nextLine();
+
+		// Devolvemos el email.
+		return email;
+	}
+
+	/**
+	 * Función que pregunta el telefono del estudiante.
+	 * 
+	 * @return Devuelve una cadena que será el telefono del estudiante.
+	 */
+	private static String pedirTelefono() {
+
+		// Declaramos una cadena que almacenará el telefono del estudiante.
+		String telefono;
+
+		// Preguntamos el nuevo telefono.
+		System.out.println("Introduce el nuevo telefono.");
+
+		// Leemos entrada de teclado.
+		telefono = sc.nextLine();
+
+		// Devolvemos el telefono.
+		return telefono;
 	}
 
 	/**
@@ -219,11 +260,7 @@ public class Main {
 		// Imprimimos las 2 opciones.
 		System.out.println("1. Telefono.\n2. Email.");
 
-		// Leemos entrada de teclado.
-		eleccion = sc.nextInt();
-
-		// Limpiamos buffer de entrada.
-		sc.nextLine();
+		eleccion = preguntarEleccion();
 
 		// Devolvemos la eleccion.
 		return eleccion;
@@ -242,12 +279,8 @@ public class Main {
 		// Preguntamos el id.
 		System.out.println("Introduce el id del estudiante.");
 
-		// Leemos entrada de teclado.
-		id = sc.nextInt();
+		id = preguntarEleccion();
 
-		// Limpiamos buffer de entrada.
-		sc.nextLine();
-		
 		// Devolvemos el id.
 		return id;
 	}
@@ -296,34 +329,19 @@ public class Main {
 		String fecha;
 
 		// Preguntamos el nombre.
-		System.out.println("Introduce el nombre del estudiante.");
-
-		// Leemos entrada de teclado.
-		nombre = sc.nextLine();
+		nombre = pedirNombre();
 
 		// Preguntamos el apellido.
-		System.out.println("Introduce el apellido del estudiante.");
-
-		// Leemos entrada de teclado.
-		apellido = sc.nextLine();
+		apellido = pedirApellidos();
 
 		// Preguntamos el email.
-		System.out.println("Introduce el email del estudiante.");
-
-		// Leemos entrada de teclado.
-		email = sc.nextLine();
+		email = pedirEmail();
 
 		// Preguntamos el telefono.
-		System.out.println("Introduce el telefono del estudiante.");
+		telefono = pedirTelefono();
 
-		// Leemos entrada de teclado.
-		telefono = sc.nextLine();
-
-		// Preguntamos la fecha..
-		System.out.println("Introduce la fecha del estudiante. (yyyy-MM-dd)");
-
-		// Leemos entrada de teclado.
-		fecha = sc.nextLine();
+		// Preguntamos la fecha.
+		fecha = pedirFecha();
 
 		// Creamos el estudiante.
 		est = new Estudiante(nombre, apellido, fecha, email, telefono);
@@ -333,13 +351,68 @@ public class Main {
 	}
 
 	/**
+	 * Función que pregunta al usuario el nombre del estudiante.
+	 * 
+	 * @return Devuelve la cadena que ha introducido el usuario por consola.
+	 */
+	private static String pedirNombre() {
+
+		// Declaramos una variable para almacenar la cadena que introduzca el usuario.
+		String nombre;
+
+		// Preguntamos el nombre.
+		System.out.println("Introduce el nombre del estudiante.");
+
+		// Leemos entrada de teclado.
+		nombre = sc.nextLine();
+
+		// Devolvemos el nombre que ha introducido el usuario.
+		return nombre;
+	}
+
+	/**
+	 * Función que pregunta al usuario el apellido del estudiante.
+	 * 
+	 * @return Devuelve la cadena que ha introducido el usuario por consola.
+	 */
+	private static String pedirApellidos() {
+		String apellido;
+		// Preguntamos el apellido.
+		System.out.println("Introduce el apellido del estudiante.");
+
+		// Leemos entrada de teclado.
+		apellido = sc.nextLine();
+		return apellido;
+	}
+
+	/**
+	 * Función que pregunta al usuario la fecha de nacimiento del estudiante.
+	 * 
+	 * @return Devuelve la fecha que ha introducido el usuario por consola.
+	 */
+	private static String pedirFecha() {
+
+		// Declaramos una cadena que almacenará la fecha introducida por el usuario.
+		String fecha;
+
+		// Preguntamos la fecha..
+		System.out.println("Introduce la fecha del estudiante. (yyyy-MM-dd)");
+
+		// Leemos entrada de teclado.
+		fecha = sc.nextLine();
+
+		// Devolvemos la fecha.
+		return fecha;
+	}
+
+	/**
 	 * Método estático que imprimirá el menú.
 	 */
 	static void menu() {
 
+		// Imprimimos el menú.
 		System.out.println(
 				"1. Crear estudiante.\r\n" + "2. Listar todos los estudiantes.\r\n" + "3. Buscar estudiante por id.\r\n"
 						+ "4. Modificar estudiante.\r\n" + "5. Eliminar estudiante.\r\n" + "0. Salir.");
-
 	}
 }
