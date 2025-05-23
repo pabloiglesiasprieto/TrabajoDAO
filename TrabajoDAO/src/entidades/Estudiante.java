@@ -106,19 +106,20 @@ public class Estudiante {
 			this.apellido = apellido;
 		}
 
-		if (email != null && !email.isBlank() && email.contains("@") && email.contains(".com")) {
+		if (email != null && !email.isBlank() && email.contains("@") && email.contains(".com")
+				|| email.contains(".es")) {
 			this.email = email;
+		}
 
-			if (telefono != null && !telefono.isBlank()) {
-				this.telefono = telefono;
-			}
+		if (telefono != null && !telefono.isBlank()) {
+			this.telefono = telefono;
+		}
 
-			try {
-				this.fecha = LocalDate.parse(fecha, FORMATO);
+		try {
+			this.fecha = LocalDate.parse(fecha, FORMATO);
 
-			} catch (Exception e) {
-				System.err.println("Formato de fecha incorrecto. (yyyy-MM-dd)");
-			}
+		} catch (Exception e) {
+			System.err.println("Formato de fecha incorrecto. (yyyy-MM-dd)");
 		}
 	}
 
@@ -201,9 +202,7 @@ public class Estudiante {
 
 		String cadena = "";
 		cadena += "ID: " + this.id + "| Nombre: " + this.nombre + " " + this.apellido + " |Email: " + this.email
-				+ " |Teléfono: " + this.telefono + " |Fecha de Nacimiento: " + String.valueOf(this.fecha);
+				+ " |Teléfono: " + this.telefono + " |Fecha de Nacimiento: " + this.fecha.format(FORMATO);
 		return cadena;
-
 	}
-
 }

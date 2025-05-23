@@ -25,12 +25,6 @@ public class Main {
 		// Declaramos una variable de tipo lista para almacenar los estudiantes.
 		ArrayList<Estudiante> listaEstudiante;
 
-		// Declaramos una variable que almacenará el telefono.
-		String telefono;
-
-		// Declaramos una variable que almacenará el email.
-		String email;
-
 		// Creamos una conexión.
 		EstudianteDAO conex = new EstudianteDAO();
 
@@ -100,50 +94,24 @@ public class Main {
 					// Preguntamos el ID.
 					id = pedirID();
 
-					// Preguntamos que valor modificar.
-					eleccion = preguntarModificacion();
+					// Buscamos si existe el estudiante.
+					est = conex.consultaID(id);
 
-					// Hacemos un switch de la eleccion.
-					switch (eleccion) {
+					// Comprobamos que exista el estudiante.
+					if (est != null) {
 
-					// Primer case.
-					case 1 -> {
+						// Preguntamos que valor modificar.
+						eleccion = preguntarModificacion();
 
-						// Pedimos el telefono.
-						telefono = pedirTelefono();
+						// Llamamos a la función que modifica al estudiante según la eleccion del
+						// usuario. 1 = Telefono, 2 = Email.
+						modificacionAtributo(id, eleccion, conex);
 
-						// Llamamos a la función de modificar el telefono.
-						if (conex.modificarTelefono(id, telefono)) {
+						// Si el estudiante no existe.
+					} else {
 
-							// Imprimimos que el telefono se ha modificado.
-							System.out.println("Se ha modificado el teléfono correctamente.");
-						}
-						// Si no se ha modificado ningun registro.
-						else {
-
-							// Imprimimos que no se ha podido modificar el telefono.
-							System.out.println("No se ha podido modificar el teléfono.");
-						}
-					}
-					// Segundo case.
-					case 2 -> {
-
-						// Pedimos el Email.
-						email = pedirEmail();
-
-						// Llamamos a la función de modificar el email.
-						if (conex.modificarEmail(id, email)) {
-
-							// Imprimimos que el email se ha modificado.
-							System.out.println("Se ha modificado el email correctamente.");
-						}
-						// Si no se ha modificado ningun registro.
-						else {
-
-							// Imprimimos que no se ha podido modificar el email.
-							System.out.println("No se ha podido modificar el email.");
-						}
-					}
+						// Imprimimos que no existe.
+						System.out.println("El estudiante a modificar no existe.");
 					}
 				}
 				// Quinto case.
@@ -181,6 +149,69 @@ public class Main {
 		}
 		// Imprimimos que se ha salido del bucle.
 		System.out.println("Saliendo...");
+
+		// Cerramos el Scanner.
+		sc.close();
+	}
+
+	/**
+	 * Función que según una eleccion y una id específica modifica un valor u otro
+	 * de un estudiante concreto.
+	 * 
+	 * @param id       ID del estudiante a la cual se va a realizar la modificación.
+	 * @param eleccion Elección para modificar. 1 = Teléfono; 2 = Email.
+	 * @param conex    Conexión con la BBDD.
+	 */
+	private static void modificacionAtributo(int id, int eleccion, EstudianteDAO conex) {
+
+		// Declaramos una variable que almacenará el telefono.
+		String telefono;
+
+		// Declaramos una variable que almacenará el email.
+		String email;
+
+		// Hacemos un switch de la eleccion.
+		switch (eleccion) {
+
+		// Primer case.
+		case 1 -> {
+
+			// Pedimos el telefono.
+			telefono = pedirTelefono();
+
+			// Llamamos a la función de modificar el telefono.
+			if (conex.modificarTelefono(id, telefono)) {
+
+				// Imprimimos que el telefono se ha modificado.
+				System.out.println("Se ha modificado el teléfono correctamente.");
+			}
+			// Si no se ha modificado ningun registro.
+			else {
+
+				// Imprimimos que no se ha podido modificar el telefono.
+				System.out.println("No se ha podido modificar el teléfono.");
+			}
+		}
+		// Segundo case.
+		case 2 -> {
+
+			// Pedimos el Email.
+			email = pedirEmail();
+
+			// Llamamos a la función de modificar el email.
+			if (conex.modificarEmail(id, email)) {
+
+				// Imprimimos que el email se ha modificado.
+				System.out.println("Se ha modificado el email correctamente.");
+			}
+			// Si no se ha modificado ningun registro.
+			else {
+
+				// Imprimimos que no se ha podido modificar el email.
+				System.out.println("No se ha podido modificar el email.");
+			}
+		}
+		}
 	}
 
 	/**
@@ -260,6 +291,7 @@ public class Main {
 		// Imprimimos las 2 opciones.
 		System.out.println("1. Telefono.\n2. Email.");
 
+		// Almacenamos la elección del usuario en una variable.
 		eleccion = preguntarEleccion();
 
 		// Devolvemos la eleccion.
@@ -291,6 +323,7 @@ public class Main {
 	 * @param listaEstudiante Lista que contiene todos los estudiantes de la bbdd.
 	 */
 	private static void imprimirEstudiantes(ArrayList<Estudiante> listaEstudiante) {
+
 		// Bucle para recorrer la lista.
 		for (Estudiante estu : listaEstudiante) {
 
@@ -376,12 +409,17 @@ public class Main {
 	 * @return Devuelve la cadena que ha introducido el usuario por consola.
 	 */
 	private static String pedirApellidos() {
+
+		// Declaramos una variable para almacenar el apellido del estudiante.
 		String apellido;
+
 		// Preguntamos el apellido.
 		System.out.println("Introduce el apellido del estudiante.");
 
 		// Leemos entrada de teclado.
 		apellido = sc.nextLine();
+
+		// Devolvemos el apellido.
 		return apellido;
 	}
 

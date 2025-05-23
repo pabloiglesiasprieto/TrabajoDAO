@@ -11,7 +11,8 @@ public class Estudiante
 	
 	
 		Constructor:
-	+	Estudiante (String nombre, String apellido, String fecha, String email, String telefono)	Constructor para crear un Estudiante.
+	+	Estudiante (String nombre, String apellido, String fecha, String email, String telefono)			Constructor para crear un Estudiante.
+	+	Estudiante (int id, String nombre, String apellido, String fecha, String email, String telefono)	Constructor para crear un Estudiante de la BBDD.
 	
 		Getters y Setters:
 	+	int getId ()											Obtiene el ID del estudiante.
