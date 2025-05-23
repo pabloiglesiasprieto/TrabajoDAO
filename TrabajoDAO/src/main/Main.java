@@ -236,6 +236,65 @@ public class Main {
 	}
 
 	/**
+	 * Función que pregunta el ID.
+	 * 
+	 * @return Devuelve el ID que el usuario ha introducido por consola.
+	 */
+	private static int pedirID() {
+
+		// Declaramos una variable que almacenará el id.
+		int id;
+
+		// Preguntamos el id.
+		System.out.println("Introduce el id del estudiante.");
+
+		id = preguntarEleccion();
+
+		// Devolvemos el id.
+		return id;
+	}
+
+	/**
+	 * Función que pregunta al usuario el nombre del estudiante.
+	 * 
+	 * @return Devuelve la cadena que ha introducido el usuario por consola.
+	 */
+	private static String pedirNombre() {
+
+		// Declaramos una variable para almacenar la cadena que introduzca el usuario.
+		String nombre;
+
+		// Preguntamos el nombre.
+		System.out.println("Introduce el nombre del estudiante.");
+
+		// Leemos entrada de teclado.
+		nombre = sc.nextLine();
+
+		// Devolvemos el nombre que ha introducido el usuario.
+		return nombre;
+	}
+
+	/**
+	 * Función que pregunta al usuario el apellido del estudiante.
+	 * 
+	 * @return Devuelve la cadena que ha introducido el usuario por consola.
+	 */
+	private static String pedirApellidos() {
+
+		// Declaramos una variable para almacenar el apellido del estudiante.
+		String apellido;
+
+		// Preguntamos el apellido.
+		System.out.println("Introduce el apellido del estudiante.");
+
+		// Leemos entrada de teclado.
+		apellido = sc.nextLine();
+
+		// Devolvemos el apellido.
+		return apellido;
+	}
+
+	/**
 	 * Función que pregunta el email del estudiante.
 	 * 
 	 * @return Devuelve una cadena que será el email del estudiante.
@@ -276,64 +335,23 @@ public class Main {
 	}
 
 	/**
-	 * Función para preguntar que valor se desea modificar.
+	 * Función que pregunta al usuario la fecha de nacimiento del estudiante.
 	 * 
-	 * @return Devuelve la eleccion del usuario sobre el valor a modificar.
+	 * @return Devuelve la fecha que ha introducido el usuario por consola.
 	 */
-	private static int preguntarModificacion() {
+	private static String pedirFecha() {
 
-		// Declaramos una variable que almacenará la eleccion.
-		int eleccion;
+		// Declaramos una cadena que almacenará la fecha introducida por el usuario.
+		String fecha;
 
-		// Preguntamos que valor quiere modificar.
-		System.out.println("Que valor quieres modificar.");
+		// Preguntamos la fecha..
+		System.out.println("Introduce la fecha del estudiante. (yyyy-MM-dd)");
 
-		// Imprimimos las 2 opciones.
-		System.out.println("1. Telefono.\n2. Email.");
+		// Leemos entrada de teclado.
+		fecha = sc.nextLine();
 
-		// Almacenamos la elección del usuario en una variable.
-		eleccion = preguntarEleccion();
-
-		// Devolvemos la eleccion.
-		return eleccion;
-	}
-
-	/**
-	 * Función que pregunta el ID.
-	 * 
-	 * @return Devuelve el ID que el usuario ha introducido por consola.
-	 */
-	private static int pedirID() {
-
-		// Declaramos una variable que almacenará el id.
-		int id;
-
-		// Preguntamos el id.
-		System.out.println("Introduce el id del estudiante.");
-
-		id = preguntarEleccion();
-
-		// Devolvemos el id.
-		return id;
-	}
-
-	/**
-	 * Función que imprime una lista de estudiantes.
-	 * 
-	 * @param listaEstudiante Lista que contiene todos los estudiantes de la bbdd.
-	 */
-	private static void imprimirEstudiantes(ArrayList<Estudiante> listaEstudiante) {
-
-		// Bucle para recorrer la lista.
-		for (Estudiante estu : listaEstudiante) {
-
-			// Imprimimos la información del estudiante.
-			System.out.println(estu);
-
-			// Imprimimos una linea para dividir los estudiantes.
-			System.out.println(
-					"----------------------------------------------------------------------------------------------------------------------------");
-		}
+		// Devolvemos la fecha.
+		return fecha;
 	}
 
 	/**
@@ -384,63 +402,45 @@ public class Main {
 	}
 
 	/**
-	 * Función que pregunta al usuario el nombre del estudiante.
+	 * Función para preguntar que valor se desea modificar.
 	 * 
-	 * @return Devuelve la cadena que ha introducido el usuario por consola.
+	 * @return Devuelve la eleccion del usuario sobre el valor a modificar.
 	 */
-	private static String pedirNombre() {
+	private static int preguntarModificacion() {
 
-		// Declaramos una variable para almacenar la cadena que introduzca el usuario.
-		String nombre;
+		// Declaramos una variable que almacenará la eleccion.
+		int eleccion;
 
-		// Preguntamos el nombre.
-		System.out.println("Introduce el nombre del estudiante.");
+		// Preguntamos que valor quiere modificar.
+		System.out.println("Que valor quieres modificar.");
 
-		// Leemos entrada de teclado.
-		nombre = sc.nextLine();
+		// Imprimimos las 2 opciones.
+		System.out.println("1. Telefono.\n2. Email.");
 
-		// Devolvemos el nombre que ha introducido el usuario.
-		return nombre;
+		// Almacenamos la elección del usuario en una variable.
+		eleccion = preguntarEleccion();
+
+		// Devolvemos la eleccion.
+		return eleccion;
 	}
 
 	/**
-	 * Función que pregunta al usuario el apellido del estudiante.
+	 * Función que imprime una lista de estudiantes.
 	 * 
-	 * @return Devuelve la cadena que ha introducido el usuario por consola.
+	 * @param listaEstudiante Lista que contiene todos los estudiantes de la bbdd.
 	 */
-	private static String pedirApellidos() {
+	private static void imprimirEstudiantes(ArrayList<Estudiante> listaEstudiante) {
 
-		// Declaramos una variable para almacenar el apellido del estudiante.
-		String apellido;
+		// Bucle para recorrer la lista.
+		for (Estudiante estu : listaEstudiante) {
 
-		// Preguntamos el apellido.
-		System.out.println("Introduce el apellido del estudiante.");
+			// Imprimimos la información del estudiante.
+			System.out.println(estu);
 
-		// Leemos entrada de teclado.
-		apellido = sc.nextLine();
-
-		// Devolvemos el apellido.
-		return apellido;
-	}
-
-	/**
-	 * Función que pregunta al usuario la fecha de nacimiento del estudiante.
-	 * 
-	 * @return Devuelve la fecha que ha introducido el usuario por consola.
-	 */
-	private static String pedirFecha() {
-
-		// Declaramos una cadena que almacenará la fecha introducida por el usuario.
-		String fecha;
-
-		// Preguntamos la fecha..
-		System.out.println("Introduce la fecha del estudiante. (yyyy-MM-dd)");
-
-		// Leemos entrada de teclado.
-		fecha = sc.nextLine();
-
-		// Devolvemos la fecha.
-		return fecha;
+			// Imprimimos una linea para dividir los estudiantes.
+			System.out.println(
+					"----------------------------------------------------------------------------------------------------------------------------");
+		}
 	}
 
 	/**
