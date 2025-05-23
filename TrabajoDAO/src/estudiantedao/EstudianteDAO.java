@@ -49,6 +49,7 @@ public class EstudianteDAO {
 	 */
 	public Connection getConnection() {
 
+		// Devolvemos la conexión.
 		return this.conex;
 	}
 
@@ -92,7 +93,8 @@ public class EstudianteDAO {
 			// Imprimimos la excepción.
 			System.out.println("Error a la hora de ejecutar la consulta: " + e.getMessage());
 		}
-		// Devolvemos la filas añadidas.
+		// Si las filas insertadas es 1 es que se ha insertado el estudiante, si es 0
+		// dará false.
 		return insertedRows == 1;
 	}
 
@@ -100,7 +102,7 @@ public class EstudianteDAO {
 	 * Método que borra un estudiante de la tabla.
 	 * 
 	 * @param id ID del estudiante a borrar.
-	 * @return Devuelve un booleano indicando si se ha podido borar
+	 * @return Devuelve un booleano indicando si se ha podido borrar o no.
 	 */
 	public boolean borrar(int id) {
 
@@ -134,7 +136,8 @@ public class EstudianteDAO {
 			// Ejecutamos la sentencia para borrar FK en calificaciones.
 			deleteCalificaciones.executeUpdate();
 
-			// Guardamos las filas borradas.
+			// Ejecutamos la sentencia para borrar los estudiantes y guardamos las filas
+			// borradas.
 			modRows = deleteEstudiantes.executeUpdate();
 
 			// Recogemos la excepción.
@@ -143,7 +146,8 @@ public class EstudianteDAO {
 			// Imprimimos la excepción.
 			System.out.println("Error a la hora de ejecutar la consulta: " + e.getMessage());
 		}
-		// Devolvemos la filas añadidas.
+		// Si las modRows es 1, significa que se ha borrado el estudiante sino, dara
+		// false.
 		return modRows == 1;
 	}
 
@@ -154,7 +158,7 @@ public class EstudianteDAO {
 	 */
 	public ArrayList<Estudiante> consulta() {
 
-		// Declaramos el resultset.
+		// Declaramos el ResultSet.
 		ResultSet rs;
 
 		// Creamos la lista.
@@ -162,6 +166,8 @@ public class EstudianteDAO {
 
 		// Creamos un Statement.
 		try {
+
+			// Creamos un statement.
 			Statement st = conex.createStatement();
 
 			// Ejecutamos la consulta.
@@ -221,7 +227,6 @@ public class EstudianteDAO {
 				// Creamos el estudiante.
 				est = new Estudiante(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6));
-
 			}
 
 			// Recogemos la excepción.
@@ -302,5 +307,4 @@ public class EstudianteDAO {
 		return modRows == 1;
 
 	}
-
 }
